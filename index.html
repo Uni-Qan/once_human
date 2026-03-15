@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Once Human - Survival Game</title>
+    <!-- خطوط مخيفة وعصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b0f19;
+            color: #FFCC00;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #090040;
+            /* أزرق فسفوري */
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 0 15px #FFCC00;
+        }
+
+        .hero-sub {
+
+            font-size: 22px;
+
+            color: #e5e7eb;
+
+            margin-bottom: 30px;
+
+            max-width: 700px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .hero-sub {
+
+            font-size: 22px;
+
+            color: #e5e7eb;
+
+            margin-bottom: 30px;
+
+            max-width: 700px;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin: 15px 0;
+            color: #B13BFF;
+            z-index: 2;
+            position: relative;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 20px 50px;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #090040;
+            background: #FFCC00ff;
+            box-shadow: 0 0 25px #FFCC00;
+            z-index: 2;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .cta:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px #FFCC00;
+        }
+
+
+        /* VIDEO SECTION */
+        .video-section {
+            padding: 80px 10%;
+            text-align: center;
+            background: #020617;
+        }
+
+        .video-section h2 {
+            margin-bottom: 30px;
+            font-size: 35px;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+            background: #111827;
+        }
+
+         /* نفس تصميم feature-card لباقي الكادر */
+
+        .feature-card,
+        .step,
+        .proof,
+        .req{
+            background:#0b0f19;
+            padding:30px;
+            border-radius:20px;
+            border:2px solid #B13BFF;
+            box-shadow:0 0 20px rgba(177,59,255,0.5);
+            transition:0.3s;
+        }
+
+        /* حركة عند المرور بالماوس */
+
+        .feature-card:hover,
+        .step:hover,
+        .proof:hover,
+        .req:hover{
+            transform:scale(1.05);
+            box-shadow:0 0 35px rgba(177,59,255,0.9);
+        }
+
+        /* العناوين داخل الكادر */
+
+        .step h3,
+        .proof h3,
+        .req h3{
+            color:#B13BFF;
+            font-family:'Permanent Marker', cursive;
+        }
+
+        /* النصوص */
+
+        .step p,
+        .proof p,
+        .req p{
+            color:#FFCC00;
+         }
+
+        .feature {
+            background: #0b0f19;
+            padding: 30px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #B13BFF;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .feature p {
+            color: #FFCC00;
+            font-size: 1rem;
+        }
+
+        .feature {
+            background: #0b0f19;
+            padding: 30px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #B13BFF;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .feature p {
+            color: #FFCC00;
+            font-size: 1rem;
+        }
+
+        /* HOW TO PLAY */
+
+        .how-to-play {
+            padding: 80px 10%;
+            color: #FFCC00;
+            background: #020617;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: #0b0f19;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .step h3 {
+            color: #B13BFF;
+            margin-bottom: 10px;
+        }
+
+        /* SOCIAL PROOF */
+
+        .social-proof {
+            padding: 80px 10%;
+            background: #111827;
+            text-align: center;
+        }
+
+        .proofs {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .proof {
+            background: #0b0f19;
+            padding: 25px;
+            border-radius: 10px;
+            width: 250px;
+        }
+
+        /* SYSTEM REQUIREMENTS */
+
+        .system {
+            padding: 80px 10%;
+            background: #020617;
+            text-align: center;
+        }
+
+        .requirements {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .req {
+            background: #0b0f19;
+            padding: 25px;
+            border-radius: 10px;
+            width: 260px;
+        }
+
+        .platform {
+            margin-top: 30px;
+            color: #B13BFF;
+            font-size: 18px;
+        }
+
+        /* IMAGES SECTION */
+        .images-section {
+            padding: 80px 10%;
+            background: #111827;
+            text-align: center;
+        }
+
+        .images-section h2 {
+            font-size: 35px;
+            margin-bottom: 30px;
+        }
+
+        .images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .images-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .images-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* FINAL CTA */
+        .final {
+            padding: 80px;
+            text-align: center;
+            background: #0b0f19;
+        }
+
+        .final h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #FFCC00;
+        }
+
+        .final .cta {
+            background: #FFCC00;
+            color: #090040;
+            box-shadow: 0 0 25px #FFCC00;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+
+            .video-section h2,
+            .images-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+               /* تحسين مربعات Features بدون حذف الكود الأصلي */
+
+.feature{
+    background:#0b0f19;
+    padding:30px;
+    border-radius:20px;
+    border:2px solid #B13BFF;
+    box-shadow:0 0 20px rgba(177,59,255,0.5);
+    transition:0.3s;
+}
+
+.feature:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 35px rgba(177,59,255,0.9);
+}
+
+.feature i{
+    font-size:50px;
+    color:#FFCC00;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    font-family:'Permanent Marker',cursive;
+    font-size:1.7rem;
+    color:#B13BFF;
+}
+
+.feature p{
+    color:#FFCC00;
+    font-size:1rem;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- PAGE 1: HERO -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://api.dyntube.com/v1/live/videos/zszcQubnYke8XoxYj7SE6A.m3u8" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <img src="https://www.pngall.com/wp-content/uploads/16/Once-Human-Logo.png" class="logo" alt="Once Human Logo">
+        <h1>Survive The Contaminated World</h1>
+        <p>Face terrifying mutated creatures and build your empire</p>
+        <a href="https://www.oncehuman.game/m/" target="_blank" class="cta">PLAY ON OFFICIAL SITE</a>
+    </section>
+
+    <!-- PAGE 2: GAMEPLAY VIDEOS -->
+    <section class="video-section">
+        <h2>Gameplay Videos</h2>
+        <div class="video-container">
+            <video controls width="100%" preload="metadata">
+                <source src="https://api.dyntube.com/v1/live/videos/i8RHkk6aYUaHCd00yODTg.m3u8" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-container">
+            <video controls width="100%" preload="metadata">
+                <source src="https://api.dyntube.com/v1/live/videos/Y53MThHWmUK0bMQiHXrDiw.m3u8" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- PAGE 3: FEATURES -->
+    <section class="features">
+        <div class="feature"><i class="fa-solid fa-skull"></i>
+            <h3>Terrifying Creatures</h3>
+            <p>Fight dangerous mutated enemies.</p>
+        </div>
+        <div class="feature"><i class="fa-solid fa-globe"></i>
+            <h3>Massive Open World</h3>
+            <p>Explore mysterious areas full of secrets.</p>
+        </div>
+        <div class="feature"><i class="fa-solid fa-hammer"></i>
+            <h3>Build Your Base</h3>
+            <p>Create your own shelter and defend it.</p>
+        </div>
+        <div class="feature"><i class="fa-solid fa-users"></i>
+            <h3>Multiplayer Survival</h3>
+            <p>Team up with players or fight against them.</p>
+        </div>
+    </section>
+
+    <!-- PAGE 4: SCREENSHOTS -->
+    <section class="images-section">
+
+        <h2>Gameplay Screenshots</h2>
+
+        <div class="gallery-wrapper">
+
+            <button class="scroll-btn left">&#10094;</button>
+
+            <div class="images-gallery">
+
+                <img src="https://scontent.frak4-2.fna.fbcdn.net/v/t39.30808-6/485116172_663911666148217_6854778415154138759_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=Xm7E1NZvxq8Q7kNvwEU7CtU&_nc_oc=AdmOqkJmRGxY-t4kr4OczKdVNYZRTxD7jlA8t82wRjpYGx5QqvCFIJP0yqGFiB8qMhk&_nc_zt=23&_nc_ht=scontent.frak4-2.fna&_nc_gid=q62Ge-HpfvRt0gciE-dMkA&_nc_ss=8&oh=00_AfyLO746EdFgbt7arNGyrjA4c2FJrOUbh1I5bfi7-zfCCw&oe=69BBBDA7"
+                    alt="Gameplay1">
+
+                <img src="https://play-lh.googleusercontent.com/5dXdAKYS02wgsLd6TwPQFxDN6s0cgWRvKJ2Vxf5Nr5ST-oYhMKfmIpAHiq9rQs3WrJhC=w2560-h1440-rw"
+                    alt="Gameplay2">
+
+                <img src="https://r.res.easebar.com/pic/20250620/5ec57ddb-abdb-418c-9da2-3c9fffb1dd58.png"
+                    alt="Gameplay3">
+
+                <img src="https://play-lh.googleusercontent.com/93-s0qwJIkS2dZooe4NXHRlW0nH3I13Q0ULdUbxHZtG0sLKjhdilRjL5RAohkwJiEepck1zRcJyBOGEGP1zAuA=w2560-h1440-rw"
+                    alt="Gameplay4">
+
+                <img src="https://scontent.frak4-3.fna.fbcdn.net/v/t39.30808-6/650254807_940253798514001_5184874671972752790_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=deH-62n3iToQ7kNvwHha2ii&_nc_oc=Adk7Ksy8kA0OMCqe27AMQJOjaxMl3pvkdidQmfiny6RRJ_k9GDvzy-lU6o3_ep5_WNc&_nc_zt=23&_nc_ht=scontent.frak4-3.fna&_nc_gid=LkOB3BartLmnAhklmiFIpw&_nc_ss=8&oh=00_AfzwZS57Y0m-eRfvKkRLXmY1dzMM5Sde34y31LIQ6YE9ZA&oe=69BCF8F4" alt="Gameplay5">
+
+                <img src="https://scontent.frak4-3.fna.fbcdn.net/v/t39.30808-6/515035874_742296651643051_7184540084020654284_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=mkltX1r-KygQ7kNvwEdtZV9&_nc_oc=AdlxzBDZth27IclkcxvRDKMy5SBfYBOJn_NtnxJbfrTqj5hc1SNGWRxGBGTh1UkQJ4M&_nc_zt=23&_nc_ht=scontent.frak4-3.fna&_nc_gid=hSKG1J5mHgHmsWPecjha3A&_nc_ss=8&oh=00_AfxTDGu5TZNx0c7DSAT5ITBJ8SKVz9mM-ftvCa-TKB5UjQ&oe=69BC92E1" alt="Gameplay6">
+
+            </div>
+
+            <button class="scroll-btn right">&#10095;</button>
+
+        </div>
+
+
+        <!-- Popup Zoom -->
+        <div class="popup-image" id="popup">
+            <img id="popup-img" src="">
+        </div>
+
+        <!-- HOW TO PLAY -->
+
+        <section class="how-to-play">
+
+            <h2>How To Play</h2>
+
+            <div class="steps">
+
+                <div class="step">
+                    <h3>1 Download From Steam</h3>
+                    <p>Install Once Human from the official platform.</p>
+                </div>
+
+                <div class="step">
+                    <h3>2 Launch The Game</h3>
+                    <p>Enter the contaminated world.</p>
+                </div>
+
+                <div class="step">
+                    <h3>3 Create Your Character</h3>
+                    <p>Customize your survivor.</p>
+                </div>
+
+                <div class="step">
+                    <h3>4 Survive And Build</h3>
+                    <p>Fight monsters and build your base.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SOCIAL PROOF -->
+
+        <section class="social-proof">
+
+            <h2>Why Players Love Once Human</h2>
+
+            <div class="proofs">
+
+                <div class="proof">
+                    <h3>⭐ 4.8 / 5 Rating</h3>
+                    <p>Highly rated by survival fans.</p>
+                </div>
+
+                <div class="proof">
+                    <h3>👥 Millions Of Players</h3>
+                    <p>Join a massive community.</p>
+                </div>
+
+                <div class="proof">
+                    <h3>🔥 Top Survival Game</h3>
+                    <p>One of the best survival games.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SYSTEM REQUIREMENTS -->
+
+        <section class="system">
+
+            <h2>System Requirements</h2>
+
+            <div class="requirements">
+
+                <div class="req">
+                    <h3>Minimum</h3>
+                    <p>OS: Windows 10</p>
+                    <p>Processor: Intel Core i5</p>
+                    <p>RAM: 8 GB</p>
+                    <p>Graphics: GTX 1060</p>
+                    <p>Storage: 50 GB</p>
+                </div>
+
+                <div class="req">
+                    <h3>Recommended</h3>
+                    <p>OS: Windows 11</p>
+                    <p>Processor: Intel Core i7</p>
+                    <p>RAM: 16 GB</p>
+                    <p>Graphics: RTX 2060</p>
+                    <p>Storage: 50 GB SSD</p>
+                </div>
+
+            </div>
+
+            <p class="platform">Platform: Windows PC Only</p>
+
+        </section>
+
+    </section>
+
+
+    <style>
+        .images-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: #111;
+            color: white;
+        }
+
+        .images-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .images-gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px;
+        }
+
+        .images-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .images-gallery img {
+            width: 300px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .images-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* scroll buttons */
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: #FFCC00;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .scroll-btn:hover {
+            background: #B13BFF;
+        }
+
+        .scroll-btn.left {
+            left: 0;
+        }
+
+        .scroll-btn.right {
+            right: 0;
+        }
+
+        /* popup zoom */
+
+        .popup-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            z-index: 999;
+        }
+
+        .popup-image img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .images-section p,
+        .how-to-play li,
+        .system-req p {
+            color: #FFCC00;
+            /* بنفسجي */
+        }
+
+        social-proof h2,
+        .system h2,
+        .system-req h2,
+        .system-requirements h2 {
+            color: #FFCC00;
+        }
+
+        .social-proof h2,
+        .system-req h2 {
+            color: #FFCC00;
+            /* اللون الأصفر */
+        }
+
+        .social-proof .proof h3 {
+            color: #B13BFF;
+        }
+
+        .req h3 {
+            color: #B13BFF;
+        }
+
+
+        .images-section h2 {
+            color: #FFD700;
+        }
+
+        .final h2 {
+            color: #B13BFF;
+        }
+
+        .system-req p {
+            color: #B13BFF;
+        }
+    </style>
+
+
+    <script>
+
+        const gallery = document.querySelector(".images-gallery");
+
+        document.querySelector(".scroll-btn.left").onclick = () => {
+            gallery.scrollBy({ left: -400, behavior: "smooth" });
+        };
+
+        document.querySelector(".scroll-btn.right").onclick = () => {
+            gallery.scrollBy({ left: 400, behavior: "smooth" });
+        };
+
+
+        const images = document.querySelectorAll(".images-gallery img");
+        const popup = document.getElementById("popup");
+        const popupImg = document.getElementById("popup-img");
+
+        images.forEach(img => {
+            img.addEventListener("click", () => {
+                popup.style.display = "flex";
+                popupImg.src = img.src;
+            });
+        });
+
+        popup.onclick = () => {
+            popup.style.display = "none";
+        };
+
+    </script>
+
+    <!-- PAGE 5: FINAL CTA -->
+    <section class="final">
+        <h2>Join Millions Of Survivors</h2>
+        <a href="https://www.oncehuman.game/m/" target="_blank" class="cta">JOIN THE APOCALYPSE NOW</a>
+    </section>
+
+</body>
+
+</html>
